@@ -37,7 +37,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow-x: auto; /* Handles long values */
+    overflow-x: auto; /*it will Handle long values */
 }
 
 #upper-display {

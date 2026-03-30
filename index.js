@@ -1,14 +1,8 @@
-/**
- * Professional Calculator Logic
- * Features: Arrow Functions, Leading Zero Sanitization, Precision Handling, 
- * and Scrollable Display for long values.
- */
-
 let expression = "";
 const mainDisplay = document.getElementById('main-display');
 const upperDisplay = document.getElementById('upper-display');
 
-// 1. Update UI (Arrow Function)
+// 1. Update UI 
 const updateDisplay = () => {
     // Show '0' if empty, else format symbols for users
     mainDisplay.innerText = expression === "" ? "0" : 
@@ -19,7 +13,7 @@ const updateDisplay = () => {
     displayContainer.scrollLeft = displayContainer.scrollWidth;
 };
 
-// 2. Insert Values (Arrow Function)
+// 2. Insert Values 
 const insert = (val) => {
     // Basic validation: prevent starting with an operator except minus or dot
     if (expression === "" && isNaN(val) && val !== '.' && val !== '-') return;
@@ -34,20 +28,20 @@ const insert = (val) => {
     updateDisplay();
 };
 
-// 3. Clear Screen (Arrow Function)
+// 3. Clear Screen 
 const clearAll = () => {
     expression = "";
     upperDisplay.innerText = "";
     updateDisplay();
 };
 
-// 4. Backspace/Delete (Arrow Function)
+// 4. Backspace/Delete 
 const deleteLast = () => {
     expression = expression.toString().slice(0, -1);
     updateDisplay();
 };
 
-// 5. Square Root Logic (Arrow Function)
+// 5. Square Root Logic 
 const calcSqrt = () => {
     if (expression === "") return;
     try {
@@ -60,11 +54,11 @@ const calcSqrt = () => {
     }
 };
 
-// 6. Sanitization Logic (Arrow Function)
-// This fixes the "025" octal bug by removing leading zeros
+// 6. Sanitization Logic 
+// This fixes zeros bigeners problem
 const sanitize = (str) => str.replace(/\b0+(?=\d)/g, '');
 
-// 7. Format Result (Arrow Function)
+// 7. Format Result (
 // Handles long decimals and converts to string
 const formatResult = (res) => {
     if (!Number.isInteger(res)) {
@@ -73,12 +67,12 @@ const formatResult = (res) => {
     return res.toString();
 };
 
-// 8. Main Calculation (Arrow Function)
+// 8. Main Calculation 
 const calculate = () => {
     try {
         if (expression === "") return;
 
-        // Clean the expression before eval
+        // Clean the expression 
         const cleanExpression = sanitize(expression);
         let result = eval(cleanExpression);
 
@@ -90,14 +84,14 @@ const calculate = () => {
     }
 };
 
-// 9. Error Handler (Arrow Function)
+// 9. Error Handler 
 const handleError = () => {
     mainDisplay.innerText = "Syntax Error";
     expression = "";
     setTimeout(updateDisplay, 1500);
 };
 
-// Bonus: Keyboard Support (Arrow Function)
+// Bonus: Keyboard Support 
 window.addEventListener('keydown', (e) => {
     if (e.key >= 0 && e.key <= 9) insert(e.key);
     if (e.key === '+') insert('+');
